@@ -1,0 +1,94 @@
+/*--------------------------------------------------*/
+/*                   Tile Stats                     */
+/*--------------------------------------------------*/
+
+.tile_count {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.tile_count .tile_stats_count {
+
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 23%;
+    display: inline-block;
+}
+
+.uptime_percent {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+.tile_count .tile_stats_count:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 65px;
+    border-left: 2px solid #ADB2B5;
+    margin-top: 10px;
+}
+
+
+
+
+.tile_count .tile_stats_count .count {
+    font-size: 30px;
+    line-height: 47px;
+    font-weight: 600;
+}
+@media (min-width: 768px){
+    .tile_count .tile_stats_count .count {
+        font-size: 30px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1100px){
+    .tile_count .tile_stats_count .count {
+        font-size: 30px;
+    }
+}
+
+.tile_count .tile_stats_count span{
+    font-size: 12px;
+}
+@media (min-width: 768px){
+    .tile_count .tile_stats_count span{
+        font-size: 13px;
+    }
+}
+.tile_count .tile_stats_count .count_bottom i{
+    width: 12px;
+}
+
+@media (max-width: 768px) {
+    .tile_count .tile_stats_count .count {
+        font-size: 20px;
+    }
+}
+
+/*----------- Network Dropdown List ----------------*/
+.select {
+    position: relative;
+    background: #464646;
+    margin: auto;
+    width: 90px;
+
+}
+
+select {
+    padding: 2px;
+    margin: 0;
+    /*-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;*/
+    color: #1ABB9C;
+    background: #464646;
+    border: 1px solid #000;
+    border-radius: 2px;
+
+}

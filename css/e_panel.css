@@ -1,0 +1,62 @@
+/*--------------------------------------------------*/
+/*                   Panels                         */
+/*--------------------------------------------------*/
+
+.e_panel {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: #464646;
+    border: none;
+    -webkit-column-break-inside: avoid;
+}
+.e_title {
+    border-bottom: 2px solid #20201f;
+    padding: 1px 5px 6px;
+    margin-bottom: 10px;
+
+}
+.e_title h2 {
+    margin: 0;
+    text-align: left;
+    min-height: 40px;
+
+}
+.e_titleButton {
+    position: relative;
+    float: left;
+}
+
+.e_searchBox {
+    width: 50%;
+    margin: auto;
+
+}
+.e_content {
+    width: 100%;
+    position: relative;
+}
+
+.panel_toolbox {
+    float: right;
+    min-width: 70px;
+}
+
+.panel_toolbox li {
+    float: left;
+    cursor: pointer;
+}
+
+.panel_toolbox li a {
+    padding: 5px;
+    color: #20201f;
+    font-size: 14px;
+}
+@media (max-width: 768px) {
+    .e_title h2 {
+        font-size: 17px;
+    }
+}
+

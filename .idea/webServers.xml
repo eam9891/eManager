@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cae54654-bcaa-49c5-9ba0-84cb118cc63c" name="ESerV" url="http://eserv.us">
+        <fileTransfer host="eserv.us" port="22325" rootFolder="/var/www/eserv.us/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22325" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

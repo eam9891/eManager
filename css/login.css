@@ -1,0 +1,57 @@
+.loginBtn {
+    display: block;
+    padding: 9px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: none;
+    border-radius: 4px;
+    z-index: 100;
+}
+.loginBtn:focus,
+.loginBtn:active:focus,
+.loginBtn.focus,
+.loginBtn:active.focus,
+.loginBtn.active.focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.loginBtn:hover,
+.loginBtn:focus,
+.loginBtn.focus {
+    color: #333;
+    text-decoration: none;
+}
+.loginBtn:active,
+.loginBtn.active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+/******** Login Form Styling *********/
+.loginForm {
+    background-color: #373737;
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+    padding-right: 10px;
+    border-bottom: 2px solid black;
+
+}
+.loginForm .formGroup {
+    width: 150px;
+    overflow: hidden;
+}

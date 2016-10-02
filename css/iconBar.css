@@ -1,0 +1,46 @@
+.icon-bar {
+    height: 100%;
+    width: 80px;
+    text-align: center;
+    background-color: #373737;
+    float: left;
+    margin: 0;
+}
+
+.icon-bar a {
+    padding: 16px;
+    display: block;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.icon-bar-item {
+    font-size: 10px;
+    text-align: center;
+
+}
+
+.icon-bar a:hover {
+    background-color: #464646;
+}
+
+
+
+@media (max-width: 768px) {
+    .icon-bar {
+
+        width: 60px;
+    }
+
+    .icon-bar a {
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .active {
+        border-right: none;
+    }
+}
