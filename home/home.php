@@ -116,8 +116,6 @@
 
         </div>
     </div>
-
-
     <!--<div class="inboxDropdown">
         <button onclick="inboxDropdown()" class="inboxDropbtn info-number">
             <i class="fa fa-envelope-o"></i>

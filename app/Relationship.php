@@ -87,11 +87,25 @@ class Relationship {
             if (isset($row['userOne']) && isset($row['userTwo'])) {
 
                 // Fetch the user details and create the user object set.
-                $resultObj = $db->query('SELECT * FROM `users` WHERE `users`.`userID` IN ('
-                    . (int)$row['userOne'] . ', ' . (int)$row['userTwo'] . ')');
+                $query = <<<TAG
+
+                    SELECT * FROM users
+                    WHERE 
+                      userID = :u1
+                    OR 
+                      userID = :u2
+                
+TAG;
+                $query_params = array (
+                    ':u1' => (int) $row['userOne'],
+                    ':u2' => (int) $row['userTwo']
+                );
+                $stmt = $db->prepare($query);
+                $stmt->execute($query_params);
+
 
                 $usersArr = array();
-                while($record = $resultObj->fetch(PDO::FETCH_ASSOC)) {
+                while($record = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $usersArr[] = $record;
                 }
 

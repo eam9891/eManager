@@ -1,6 +1,6 @@
 <?php
 
-    include_once('../app/config.php');
+    include_once $_SERVER['DOCUMENT_ROOT'].'/app/config.php';
 
     $user = new User();
 
@@ -12,10 +12,14 @@
         die("Redirecting to ../../index.php");
     }
 
-    $userID = $_SESSION['user']['userID'];
+    // If there is not uid redirect to home page.
+    if (empty($_GET) || !isset($_GET['uid'])) {
+        header('Location: ../home.php');
+        die('Redirecting to ../home.php');
+    }
 
     // Logged in user details.
-    $user = $user->getUser($db, (int) $userID);
+    $user = $user->getUser($db, (int) $_SESSION['user']['userID']);
 
     // Relation of the logged in user
     $relation = new Relation($db, $user);
@@ -25,7 +29,7 @@
 
 
     // Check if the profile is same as the logged in user
-    if ($friend_id = $userID) {
+    if ($friend_id === $user->getUserId()) {
 
         $profile = $user;
         $profile_relation = $relation;
@@ -60,7 +64,7 @@
                     echo '<p>Email: <b>' . $profile->getEmail() . '</b></p>';
 
                     // Check if the current user is not the profile user.
-                    if ($profile->getUserId() != $userID) {
+                    if ($profile->getUserId() !== $user->getUserId()) {
                         // Check if user is there in any relationship record
                         if ($relationship != false) {
                             switch ($relationship->getStatus()) {

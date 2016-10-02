@@ -52,13 +52,15 @@ class Relation {
     public function getFriendsList() {
         $id = (int)$this->loggedInUser->getUserId();
 
-        $query = "
-            SELECT * FROM workerRequests
+        $query = <<<TAG
+
+            SELECT * FROM contacts
             WHERE (
                 (userOne = :u1 OR userTwo = :u2)
                 AND status = :s
             )
-        ";
+        
+TAG;
         $query_params = array(
             ':u1' => $id,
             ':u2' => $id,
@@ -88,7 +90,7 @@ class Relation {
         $id = (int) $this->loggedInUser->getUserId();
 
         $query = "
-            SELECT * FROM workerRequests
+            SELECT * FROM contacts
             WHERE (
                 (userOne = :u1 OR userTwo = :u2)
                 AND
@@ -122,7 +124,7 @@ class Relation {
     public function getFriendRequests() {
     $id = (int) $this->loggedInUser->getUserId();
 
-    $sql = 'SELECT * FROM `workerRequests` ' .
+    $sql = 'SELECT * FROM `contacts` ' .
             'WHERE (`userOne` = ' . $id . ' OR `userTwo` = '. $id .')' .
             ' AND `status` = 0 ' .
             'AND `actionUserID` != ' . $id;
@@ -148,7 +150,7 @@ class Relation {
     public function getBlockedFriends() {
     $id = (int) $this->loggedInUser->getUserId();
 
-    $sql = 'SELECT * FROM `workerRequests` ' .
+    $sql = 'SELECT * FROM `contacts` ' .
             'WHERE (`userOne` = ' . $id . ' OR `userTwo` = '. $id .')' .
             ' AND `status` = 3 ' .
             'AND `actionUserID` = ' . $id;
@@ -184,7 +186,7 @@ class Relation {
 
 
         $query = "
-            SELECT * FROM workerRequests
+            SELECT * FROM contacts
             WHERE 
                 userOne = :u1
             AND
@@ -227,7 +229,7 @@ class Relation {
         $user_two = $temp;
     }
 
-    $sql = 'INSERT INTO `workerRequests` '
+    $sql = 'INSERT INTO `contacts` '
             . '(`userOne`, `userTwo`, `status`, `actionUserID`) '
             . 'VALUES '
             . '(' . $user_one . ', '. $user_two .', 0, '. $action_user_id .')';
@@ -258,10 +260,10 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'UPDATE `relationship` '
-            . 'SET `status` = 1, `action_user_id` = '. $action_user_id
-            .' WHERE `user_one_id` = '. $user_one
-            .' AND `user_two_id` = ' . $user_two;
+    $sql = 'UPDATE `contacts` '
+            . 'SET `status` = 1, `actionUserID` = '. $action_user_id
+            .' WHERE `userOne` = '. $user_one
+            .' AND `userTwo` = ' . $user_two;
 
     $this->dbCon->query($sql);
 
@@ -289,10 +291,10 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'UPDATE `relationship` '
-            . 'SET `status` = 2, `action_user_id` = '. $action_user_id
-            .' WHERE `user_one_id` = '. $user_one
-            .' AND `user_two_id` = ' . $user_two;
+    $sql = 'UPDATE `contacts` '
+            . 'SET `status` = 2, `actionUserID` = '. $action_user_id
+            .' WHERE `userOne` = '. $user_one
+            .' AND `userTwo` = ' . $user_two;
 
     $this->dbCon->query($sql);
 
@@ -319,7 +321,7 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'DELETE FROM `workerRequests` ' .
+    $sql = 'DELETE FROM `contacts` ' .
             'WHERE `userOne` = ' . $user_one .
             ' AND `userTwo` = ' . $user_two .
             ' AND `status` = 0';
@@ -349,7 +351,7 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'DELETE FROM `workerRequests` ' .
+    $sql = 'DELETE FROM `contacts` ' .
             'WHERE `userOne` = ' . $user_one .
             ' AND `userTwo` = ' . $user_two .
             ' AND `status` = 1';
@@ -380,10 +382,10 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'UPDATE `relationship` '
-            . 'SET `status` = 3, `action_user_id` = '. $action_user_id
-            .' WHERE `user_one_id` = '. $user_one
-            .' AND `user_two_id` = ' . $user_two;
+    $sql = 'UPDATE `contacts` '
+            . 'SET `status` = 3, `actionUserID` = '. $action_user_id
+            .' WHERE `userOne` = '. $user_one
+            .' AND `userTwo` = ' . $user_two;
 
     $this->dbCon->query($sql);
 
@@ -410,7 +412,7 @@ class Relation {
       $user_two = $temp;
     }
 
-    $sql = 'DELETE FROM `workerRequests` ' .
+    $sql = 'DELETE FROM `contacts` ' .
             'WHERE `userOne` = ' . $user_one .
             ' AND `userTwo` = ' . $user_two .
             ' AND `status` = 3';
