@@ -1,6 +1,6 @@
 <?php
 	// First we execute our common code to connect to the database and start the session
-	require("../app/connect.php");
+	require("../app/config.php");
 
 	// At the top of the page we check to see whether the user is logged in or not
 	if(empty($_SESSION['user']['role']))
@@ -14,6 +14,11 @@
 	}
 
 	include("sysInfo.class.php");
+
+    $userID = $_SESSION['user']['userID'];
+    $user = new User();
+    $user = $user->getUser($db, $userID);
+    $relation = new Relation($db, $user);
 
 
 ?>
@@ -53,9 +58,9 @@
 
 	<!-- User profile with dropdown menu -->
 	<div class="profileDropdown">
-		<button onclick="accountDropdown()" class="profileDropbtn user-profile">
-			<img src="../../images/user.png" alt="">
-			<?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>
+		<button class="profileDropbtn user-profile">
+			<img src="../images/user.png" alt="">
+			<?= $user->getUsername() ?>
 		</button>
 		<div id="profileDropdownID" class="profileDropdownContent">
 			<a href="#">Profile<span class="badge bg-red pull-right">50%</span></a>
@@ -74,7 +79,7 @@
 			<ul class="">
 				<li>
 					<a href="#">
-						<span class="image"><img src="../../images/user.png" alt="Profile Image" /></span>
+						<span class="image"><img src="../images/user.png" alt="Profile Image" /></span>
 						<span>John Smith</span>
 						<span class="time">3 mins ago</span><br>
 						<span class="message">
@@ -84,7 +89,7 @@
 				</li>
 				<li>
 					<a href="#">
-						<span class="image"><img src="../../images/user.png" alt="Profile Image" /></span>
+						<span class="image"><img src="../images/user.png" alt="Profile Image" /></span>
 						<span>John Smith</span>
 						<span class="time">3 mins ago</span><br>
 						<span class="message">

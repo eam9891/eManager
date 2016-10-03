@@ -155,7 +155,7 @@ $jobRows = $stmt->fetchAll();
         <i class="fa fa-area-chart"></i>
         <div class="icon-bar-item">Jobs</div>
     </a>
-    <a href="myWorkers.php">
+    <a href="myContacts.php">
         <i class="fa fa-table"></i>
         <div class="icon-bar-item">Workers</div>
     </a>

@@ -1,7 +1,9 @@
 <?php
 
+    // Include our config file - This holds the paths to all of our classes and our connection
     include_once $_SERVER['DOCUMENT_ROOT'].'/app/config.php';
 
+    // Initialize a new user object
     $user = new User();
 
     // At the top of the page we check to see whether the user is logged in or not
@@ -29,20 +31,28 @@
 
 
     // Check if the profile is same as the logged in user
+    // If it is we are requesting the current users profile
     if ($friend_id === $user->getUserId()) {
 
+        // The user object will be the same as before
         $profile = $user;
+
+        // Relations will also be the same
         $profile_relation = $relation;
+
+        // Get the friends list
         $profile_friends = $relation->getFriendsList();
 
+    // If it is not, we are requesting another users profile
     } else {
-        // Profile use details
+
+        // Set the user object
         $profile = (new User())->getUser($db, $friend_id);
 
-        // Relation object for the current profile being showed
+        // Set the relation object
         $profile_relation = new Relation($db, $profile);
 
-        // Got the Friends list
+        // Get the Friends list
         $profile_friends = $profile_relation->getFriendsList();
 
         // Get the relationship between the current user and the profile user.
@@ -70,16 +80,16 @@
                             switch ($relationship->getStatus()) {
                             case 0:
                                 if ($relationship->getActionUserId() == $user->getUserId()) {
-                                    echo '<a href="user_action.php?action=cancel&friend_id=' .
+                                    echo '<a href="http://192.168.0.21/home/includes/user_action.php?action=cancel&friend_id=' .
                                           $profile->getUserId() . '">Cancel Request</a>';
                                 } else {
-                                    echo '<a href="user_action.php?action=accept&friend_id=' .
+                                    echo '<a href="http://192.168.0.21/home/includes/user_action.php?action=accept&friend_id=' .
                                           $profile->getUserId() . '">Accept Request</a>';
                                 }
                                 break;
 
                             case 1:
-                                echo '<a href="user_action.php?action=unfriend&friend_id=' .
+                                echo '<a href="http://192.168.0.21/home/includes/user_action.php?action=unfriend&friend_id=' .
                                   $profile->getUserId() . '">Unfriend</a>';
                                 break;
 

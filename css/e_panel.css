@@ -11,18 +11,24 @@
     background-color: #464646;
     border: none;
     -webkit-column-break-inside: avoid;
+
 }
 .e_title {
-    border-bottom: 2px solid #20201f;
-    padding: 1px 5px 6px;
-    margin-bottom: 10px;
+
+    padding-top: 5px;
+    padding-right: 5px;
+
+
+}
+.e_titleTabs {
 
 }
 .e_title h2 {
     margin: 0;
     text-align: left;
     min-height: 40px;
-
+    border-bottom: 2px solid #20201f;
+    width: 25%;
 }
 .e_titleButton {
     position: relative;

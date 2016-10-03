@@ -55,10 +55,10 @@
     <link href="../css/modals.css" rel="stylesheet">
     <link href="../css/dropdowns.css" rel="stylesheet">
     <link href="../css/profileDropdown.css" rel="stylesheet">
-
+    <link href="../css/tabs.css" rel="stylesheet">
 
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </head>
 <header>
@@ -77,7 +77,7 @@
             <?= $user->getUsername() ?>
         </button>
         <div id="profileDropdownID" class="profileDropdownContent">
-            <a href="#">Profile<span class="badge bg-red pull-right">50%</span></a>
+            <a href="profile.php?uid=<?= $userID ?>">Profile<span class="badge bg-red pull-right">50%</span></a>
             <a href="account-settings.php">Settings</a>
             <a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
         </div>
@@ -139,9 +139,9 @@
         <i class="fa fa-area-chart"></i>
         <div class="icon-bar-item">Jobs</div>
     </a>
-    <a href="tables.php">
+    <a href="myContacts.php">
         <i class="fa fa-table"></i>
-        <div class="icon-bar-item">Workers</div>
+        <div class="icon-bar-item">Contacts</div>
     </a>
     <a href="#">
         <i class="fa fa-cloud"></i>
@@ -159,23 +159,52 @@
 <body>
 <main>
 <div id="wrapper">
+
     <div class="e_panel">
-        <div class="e_title">
-            <h2>Home</h2>
+        <div class="tabTitle">
+            <span class="pull-right"> Dashboard </span>
+            <i class="fa fa-tachometer pull-right"></i>
         </div>
-        <div class="e_content">
+
+
+            <nav class='tabs'>
+                <a href="#tab1" class="tabHdr selected">
+                    <span class="badge bg-red"> 6 </span>
+                    My Profile
+
+                </a>
+                <a href="#tab2" class='tabHdr'>
+                    <span class="badge bg-green">
+                        <?= $relation->getNumContacts(); ?>
+                    </span>
+                    Contacts
+                </a>
+
+                <a href="#tab3" class='tabHdr'>
+                    Jobs
+                </a>
+                <a href="#tab4" class='tabHdr'>
+                    Inbox
+                </a>
+            </nav>
+
+
+        <div class='e_content tabContent' id='tab1'>
             <div class="user-details">
                 <p>Username: <b><?php echo $user->getUsername(); ?></b></p>
                 <p>Email: <b><?php echo $user->getEmail(); ?></b></p>
                 <p><a href="logout.php" title="logout">Logout</a></p>
                 <hr/>
+            </div>
+        </div>
+        <div class='e_content tabContent' id='tab2'>
+            <div id="friends">
                 <h4>Friends</h4>
                 <?php
                 include_once('includes/user_friends.php');
                 ?>
             </div>
-
-            <div>
+            <div id="friendRequests">
                 <h3>Friend Requests</h3>
                 <div>
                     <?php
@@ -183,8 +212,7 @@
                     ?>
                 </div>
             </div>
-
-            <div>
+            <div id="blockedFriends">
                 <h3>Blocked Friends</h3>
                 <div>
                     <?php
@@ -193,9 +221,18 @@
                 </div>
             </div>
         </div>
+        <div class='e_content tabContent' id='tab3'>
+            Contents - Tab 3
+        </div>
+        <div class='e_content tabContent' id='tab4'>
+            Contents - Tab 4
+        </div>
     </div>
+
+
 </div>
 </main>
+<script src="../js/tabs.js"></script>
 </body>
 </html>
 

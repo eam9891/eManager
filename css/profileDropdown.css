@@ -33,7 +33,7 @@
 .profileDropdown {
     position: relative;
     float: right;
-    display: inline;
+    display: inline-block;
     top: 0;
 }
 
@@ -56,11 +56,14 @@
     display: block;
 }
 
-/* Change color of inboxDropdown links on hover */
-.profileDropdownContent a:hover {background-color: #464646}
+.profileDropdown:hover .profileDropdownContent {
+    display: block;
+}
 
-/* Show the inboxDropdown menu (use JS to add this class to the .profileDropdownContent container when the user clicks on the inboxDropdown button) */
-.show {display:block;}
+.profileDropdown:hover .profileDropbtn {
+    background-color: #4c4c4c;
+}
+
 .list_unstyled {
     padding-left: 0;
     list-style: none;

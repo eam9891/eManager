@@ -43,6 +43,29 @@ class Relation {
         }
         return $friend;
     }
+
+    public function getNumContacts() {
+        $id = (int)$this->loggedInUser->getUserId();
+
+        $query = <<<TAG
+
+            SELECT * FROM contacts
+            WHERE (
+                (userOne = :u1 OR userTwo = :u2)
+                AND status = :s
+            )
+        
+TAG;
+        $query_params = array(
+            ':u1' => $id,
+            ':u2' => $id,
+            ':s' => 1
+        );
+        $stmt = $this->dbCon->prepare($query);
+        $stmt->execute($query_params);
+        $count = $stmt->rowCount();
+        return $count;
+    }
   
     /**
     * Get all the friends list for the currently loggedin user
@@ -203,7 +226,7 @@ TAG;
 
 
         if ($stmt->rowCount() > 0) {
-          $row = $stmt->fetchAll();
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
           $relationship = new Relationship();
           $relationship->arrToRelationship($row, $this->dbCon);
           return $relationship;
